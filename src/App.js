@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 // import * as BooksAPI from './BooksAPI'
-import './App.css'
-import BookShelf from './BookShelf';
+import "./App.css";
+import BookShelf from "./BookShelf";
 
 const bookshelfs = [
   {
@@ -61,7 +61,7 @@ const bookshelfs = [
       }
     ]
   }
-]
+];
 
 class BooksApp extends React.Component {
   state = {
@@ -72,7 +72,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false
-  }
+  };
 
   render() {
     return (
@@ -80,7 +80,12 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+              <button
+                className="close-search"
+                onClick={() => this.setState({ showSearchPage: false })}
+              >
+                Close
+              </button>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -90,12 +95,11 @@ class BooksApp extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
-
+                <input type="text" placeholder="Search by title or author" />
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid" />
             </div>
           </div>
         ) : (
@@ -105,19 +109,21 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-              {bookshelfs.map((bs) => (
-                <BookShelf key={bs.title} title={bs.title} books={bs.books} />
-              ))}
+                {bookshelfs.map(bs => (
+                  <BookShelf key={bs.title} title={bs.title} books={bs.books} />
+                ))}
               </div>
             </div>
             <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+              <button onClick={() => this.setState({ showSearchPage: true })}>
+                Add a book
+              </button>
             </div>
           </div>
         )}
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;
