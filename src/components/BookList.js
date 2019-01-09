@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import BookShelf from './BookShelf';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import BookShelf from "./BookShelf";
+import { Link } from "react-router-dom";
 
 export default class BookList extends Component {
-  
   static propTypes = {
-    books: PropTypes.array.isRequired,
-  }
+    books: PropTypes.array.isRequired
+  };
 
   render() {
     const bookshelfs = [{
@@ -25,11 +24,13 @@ export default class BookList extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {bookshelfs.map((bookshelf) => (
+            {bookshelfs.map(shelf => (
               <BookShelf
-                key={bookshelf.id}
-                title={bookshelf.title}
-                books={this.props.books.filter((book) => (book.shelf === bookshelf.id))}
+                key={shelf.id}
+                title={shelf.title}
+                books={this.props.books.filter(
+                  book => book.shelf === shelf.id
+                )}
               />
             ))}
           </div>

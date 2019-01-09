@@ -12,7 +12,6 @@ export default class SearchBar extends Component {
   }
 
   doSearch = (query) => {
-
     if (query) {
       BooksAPI.search(query.trim())
         .then(books => {

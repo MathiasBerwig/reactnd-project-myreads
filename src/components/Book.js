@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import BookShelfChanger from "./BookShelfChanger";
 
-class Book extends Component {
+export default class Book extends Component {
+  propTypes = {
+    value: PropTypes.object.isRequired
+  };
+
   render() {
     const book = this.props.value;
     let { title, authors } = book;
-    
-    authors = authors 
-        ? authors.join(', ') 
-        : '';
-    
-    const thumbnail = book.imageLinks 
-        ? book.imageLinks.smallThumbnail
-        : "https://via.placeholder.com/128x196"; // TODO: Provide a decent placeholder
+
+    authors = authors ? authors.join(", ") : "";
+
+    const thumbnail = book.imageLinks
+      ? book.imageLinks.smallThumbnail
+      : "https://via.placeholder.com/128x196"; // TODO: Provide a decent placeholder
 
     return (
       <div className="book">
@@ -25,17 +28,7 @@ class Book extends Component {
               backgroundImage: `url("${thumbnail}")`
             }}
           />
-          <div className="book-shelf-changer">
-            <select>
-              <option value="move" disabled>
-                Move to...
-              </option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <BookShelfChanger book={book} />
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">{authors}</div>
@@ -43,9 +36,3 @@ class Book extends Component {
     );
   }
 }
-
-Book.propTypes = {
-  value: PropTypes.object.isRequired,
-};
-
-export default Book;
