@@ -6,6 +6,7 @@ export default class Book extends Component {
   static propTypes = {
     value: PropTypes.object.isRequired,
     books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
   };
 
   render() {
@@ -33,6 +34,7 @@ export default class Book extends Component {
           <BookShelfChanger 
             selectedBook={book} 
             books={books}
+            changeShelf={this.props.changeShelf}
           />
         </div>
         <div className="book-title">{title}</div>

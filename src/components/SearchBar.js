@@ -8,6 +8,7 @@ import Book from './Book';
 export default class SearchBar extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
   }
   
   state = {
@@ -49,7 +50,11 @@ export default class SearchBar extends Component {
           <ol className="books-grid">
           {this.state.results.map(book => (
             <li key={book.id}>
-              <Book value={book} books={this.props.books} />
+              <Book 
+                value={book} 
+                books={this.props.books} 
+                changeShelf={this.props.changeShelf}
+              />
             </li>
           ))}
           </ol>

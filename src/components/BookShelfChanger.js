@@ -5,6 +5,7 @@ export default class BookShelfChanger extends Component {
   static propTypes = {
     selectedBook: PropTypes.object.isRequired,
     books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
   }
   
   render() {
@@ -17,7 +18,7 @@ export default class BookShelfChanger extends Component {
     if (!defaultShelf) {
       // get more details from book, if it's already in our list
       const bookWithShelf = books.find(book => book.id === selectedBook.id);
-      
+      // if not in our list, assign "none" as default
       defaultShelf = bookWithShelf
         ? bookWithShelf.shelf
         : 'none'
@@ -25,8 +26,8 @@ export default class BookShelfChanger extends Component {
 
     return (
       <div className="book-shelf-changer">
-        <select defaultValue={defaultShelf}>
-          <option value="none" disabled>
+        <select defaultValue={defaultShelf} onChange={(e) => this.props.changeShelf(selectedBook, e.target.value)}>
+          <option value="move" disabled>
             Move to...
           </option>
           <option value="currentlyReading">Currently Reading</option>

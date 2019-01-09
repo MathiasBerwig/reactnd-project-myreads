@@ -5,7 +5,8 @@ import Book from "./Book";
 export default class BookShelf extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
   };
 
   render() {
@@ -19,6 +20,7 @@ export default class BookShelf extends Component {
                 <Book 
                   value={book}
                   books={this.props.books}
+                  changeShelf={this.props.changeShelf}
                 />
               </li>
             ))}

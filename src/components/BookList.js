@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 export default class BookList extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired,
   };
 
   render() {
@@ -31,6 +32,7 @@ export default class BookList extends Component {
                 books={this.props.books.filter(
                   book => book.shelf === shelf.id
                 )}
+                changeShelf={this.props.changeShelf}
               />
             ))}
           </div>
