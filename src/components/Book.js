@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import BookShelfChanger from "./BookShelfChanger";
 
 export default class Book extends Component {
-  propTypes = {
+  static propTypes = {
     value: PropTypes.object.isRequired
   };
 
