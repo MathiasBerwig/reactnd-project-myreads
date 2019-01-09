@@ -4,11 +4,13 @@ import BookShelfChanger from "./BookShelfChanger";
 
 export default class Book extends Component {
   static propTypes = {
-    value: PropTypes.object.isRequired
+    value: PropTypes.object.isRequired,
+    books: PropTypes.array.isRequired,
   };
 
   render() {
     const book = this.props.value;
+    const books = this.props.books;
     let { title, authors } = book;
 
     authors = authors ? authors.join(", ") : "";
@@ -28,7 +30,10 @@ export default class Book extends Component {
               backgroundImage: `url("${thumbnail}")`
             }}
           />
-          <BookShelfChanger book={book} />
+          <BookShelfChanger 
+            selectedBook={book} 
+            books={books}
+          />
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">{authors}</div>

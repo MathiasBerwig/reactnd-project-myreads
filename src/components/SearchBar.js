@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
 import * as BooksAPI from '../api/BooksAPI';
 import Book from './Book';
 
 export default class SearchBar extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+  }
+  
   state = {
     hasError: false,
     results: [],
@@ -44,7 +49,7 @@ export default class SearchBar extends Component {
           <ol className="books-grid">
           {this.state.results.map(book => (
             <li key={book.id}>
-              <Book value={book} />
+              <Book value={book} books={this.props.books} />
             </li>
           ))}
           </ol>
