@@ -16,11 +16,7 @@ export default class BookShelf extends Component {
           <ol className="books-grid">
             {this.props.books.map(book => (
               <li key={book.title}>
-                <Book
-                  coverURL={book.coverURL}
-                  title={book.title}
-                  authors={book.authors}
-                />
+                <Book value={book} />
               </li>
             ))}
           </ol>

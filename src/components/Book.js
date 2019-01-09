@@ -11,7 +11,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 192,
-              backgroundImage: `url("${this.props.coverURL}")`
+              backgroundImage: `url("${this.props.value.imageLinks.smallThumbnail}")`
             }}
           />
           <div className="book-shelf-changer">
@@ -26,17 +26,15 @@ class Book extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{this.props.title}</div>
-        <div className="book-authors">{this.props.authors}</div>
+        <div className="book-title">{this.props.value.title}</div>
+        <div className="book-authors">{this.props.value.authors.join(", ")}</div>
       </div>
     );
   }
 }
 
 Book.propTypes = {
-  coverURL: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  authors: PropTypes.string.isRequired
+  value: PropTypes.object.isRequired,
 };
 
 export default Book;
