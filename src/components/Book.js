@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 
 class Book extends Component {
   render() {
+    const book = this.props.value;
+    let { title, authors } = book;
+    
+    authors = authors 
+        ? authors.join(', ') 
+        : '';
+    
+    const thumbnail = book.imageLinks 
+        ? book.imageLinks.smallThumbnail
+        : "https://via.placeholder.com/128x196"; // TODO: Provide a decent placeholder
+
     return (
       <div className="book">
         <div className="book-top">
@@ -11,7 +22,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 192,
-              backgroundImage: `url("${this.props.value.imageLinks.smallThumbnail}")`
+              backgroundImage: `url("${thumbnail}")`
             }}
           />
           <div className="book-shelf-changer">
@@ -26,8 +37,8 @@ class Book extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{this.props.value.title}</div>
-        <div className="book-authors">{this.props.value.authors.join(", ")}</div>
+        <div className="book-title">{title}</div>
+        <div className="book-authors">{authors}</div>
       </div>
     );
   }
