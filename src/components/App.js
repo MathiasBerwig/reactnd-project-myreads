@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
-import BookShelf from "./BookShelf";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import * as BookAPI from '../api/BooksAPI';
 import BookList from "./BookList";
 import SearchBar from "./SearchBar";
@@ -9,7 +8,9 @@ import SearchBar from "./SearchBar";
 class BooksApp extends React.Component {
 
   state = {
-    books: []
+    books: [],
+    booksError: false,
+    booksLoading: true,
   }
 
   componentDidMount() {
@@ -17,10 +18,19 @@ class BooksApp extends React.Component {
   }
 
   loadAllBooks = () => {
+    this.setState({booksLoading: true})
+
     BookAPI.getAll()
       .then((books) => {
         this.setState(() => ({
-          books
+          books,
+          booksError: false
+        }))
+      })
+      .catch((err) => {
+        this.setState(() => ({
+          books: [],
+          booksError: true
         }))
       })
   }
@@ -61,6 +71,9 @@ class BooksApp extends React.Component {
           <BookList 
             books={this.state.books} 
             changeShelf={this.changeShelf}
+            isError={ this.state.booksError }
+            isLoading={ this.state.booksLoading }
+            isDataReady={ this.state.books.length > 0 }
           />
         )} />
       </div>;
