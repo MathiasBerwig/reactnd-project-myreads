@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import BookShelfChanger from "./BookShelfChanger";
 
-export default class Book extends Component {
+export default class Book extends PureComponent {
   static propTypes = {
     value: PropTypes.object.isRequired,
     books: PropTypes.array.isRequired,
